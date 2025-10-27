@@ -1,4 +1,4 @@
-import { json } from "express";
+
 import Teacher from "../models/teachers.js";
 
 export const getAllTeachers = async(req,res) => {

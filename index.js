@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import studentRoutes from "./routes/studentRoutes.js";
 import teacherRoutes from "./routes/teacherRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
 
 dotenv.config();
 
@@ -14,8 +15,9 @@ connectDB();
 app.use(express.json());
 
 // This handles /api/students route
-app.use('/api/students', studentRoutes);
-app.use('/api/teachers', teacherRoutes);
+app.use('/students', studentRoutes);
+app.use('/teachers', teacherRoutes);
+app.use('/courses',  courseRoutes);
 
 // Simple root route
 app.get("/", (req, res) => {
@@ -23,7 +25,8 @@ app.get("/", (req, res) => {
         message: "College Server is running!",
         endpoint:{
             students : "/api/students",
-            teachers : "/api/teachers"
+            teachers : "/api/teachers",
+            courses : "/api/courses"
         } 
     });
 });
