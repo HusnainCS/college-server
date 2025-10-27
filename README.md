@@ -1,150 +1,131 @@
 # college-server
 
-A backend server for a college management application. This repository contains the server-side code and supporting configuration for APIs that power a college web or mobile client. This README is a starter template — update the sections below with project-specific details where needed.
+A small backend server for managing a college's students, teachers and courses. Built with Express and Mongoose, using dotenv for configuration and nodemon for local development. This README explains how to run the project, environment variables, installed packages, and the core API endpoints.
 
-## Table of Contents
+## Table of contents
 
-- [About](#about)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-  - [Run Locally](#run-locally)
-- [API](#api)
-- [Testing](#testing)
-- [Linting & Formatting](#linting--formatting)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- About
+- Tech stack
+- Installation
+- Environment variables
+- Run (development / production)
+- API (endpoints + examples)
+- requirements.txt
 
 ## About
 
-This project provides the server-side implementation for managing college data such as users (students, faculty, admins), courses, enrollments, schedules, and other resources. Use this README as a guide to set up the project locally and to learn how to run tests and contribute.
+This project exposes a minimal REST API to manage:
+- Students
+- Teachers
+- Courses
 
-## Features
+It uses MongoDB via mongoose for persistence, Express for routing, dotenv for environment configuration, and nodemon for hot reload during development.
 
-- RESTful API endpoints for core college resources (users, courses, enrollments, departments)
-- Authentication and authorization (JWT or sessions)
-- Validation and error handling
-- Database integration (e.g., PostgreSQL, MySQL, MongoDB — configure in env)
-- Docker-friendly configuration
+## Tech stack
 
-> Note: Update the "Features" section to reflect the actual functionality implemented in this repository.
+- Node.js
+- Express
+- Mongoose
+- dotenv
+- nodemon (dev)
+- (Optional) Python helper scripts may be included and listed in requirements.txt
 
-## Tech Stack
+## Installation
 
-- Runtime: Node.js (recommended) — replace if your project uses a different runtime
-- Web framework: Express (common choice) — replace if using another framework
-- Database: PostgreSQL / MongoDB / MySQL (configure in .env)
-- Testing: Jest / Mocha (update to match repo)
-
-Update this section with the exact tools, versions and frameworks used by the project.
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (>= 14) and npm or yarn installed
-- Database server running (Postgres, MongoDB, etc.) if applicable
-- Docker and Docker Compose (optional, for containerized setup)
-
-### Installation
-
-1. Clone the repository
-
+1. Clone the repo
+   ```
    git clone https://github.com/HusnainCS/college-server.git
    cd college-server
+   ```
 
-2. Install dependencies
-
+2. Install Node dependencies
+   ```
    npm install
-   # or
-   yarn install
+   ```
+   Typical dependencies to be installed (already referenced in package.json):
+   - express
+   - mongoose
+   - dotenv
+   - (dev) nodemon
 
-### Environment Variables
+3. If you use any Python helper scripts, install Python deps:
+   ```
+   pip install -r requirements.txt
+   ```
+   (See the requirements.txt section below.)
 
-Create a `.env` file in the project root and provide the required environment variables. Example:
+## Environment variables
+
+Create a `.env` file in the project root with values like:
 
 ```
 PORT=4000
-DATABASE_URL=postgresql://user:password@localhost:5432/college_db
-JWT_SECRET=your_jwt_secret
+MONGO_URI=mongodb://localhost:27017/college_db
 NODE_ENV=development
+JWT_SECRET=your_jwt_secret_here   # if you add auth later
 ```
 
-Update the variables to match your environment and database credentials.
+Make sure your MongoDB server is running and the MONGO_URI is reachable.
 
-### Run Locally
+## Run
 
-Start the development server:
+- Development (uses nodemon)
+  ```
+  npm start
+  ```
+  Example package.json scripts:
+  ```json
+  "scripts": {
+    "start": "nodemon src/index.js",
+  }
+  ```
 
-```
-# with npm
-npm run dev
-
-# with yarn
-yarn dev
-```
-
-The server should be available at http://localhost:4000 (or the port you configured).
+- Production
+  ```
+  npm start
+  ```
 
 ## API
 
-Describe the main API resources and endpoints here. For example:
+Base URL: http://localhost:4000 (or the PORT you set)
 
-- GET /api/health — Health check
-- POST /api/auth/login — Authenticate a user
-- POST /api/users — Create a new user
-- GET /api/courses — List courses
-- POST /api/enrollments — Enroll a student in a course
+All endpoints are JSON-based. Example request/response payloads below.
 
-Include examples of request/response payloads and authentication information.
+Common endpoints (implemented in this project):
+- Students
+  - GET /students
+    - Description: List all students
+      
+  - POST /students
+    - Description: Create a new student
+    
+- Teachers
+  - GET /teachers
+    - Description: List all teachers
+     
+  - POST /teachers
+    - Description: Create a new teacher
 
-## Testing
+- Courses
+  - GET /courses
+    - Description: List all courses
+      
+  - POST /courses
+    - Description: Create a new course
 
-Run tests with:
+Notes:
+- Validate input in your route handlers (e.g., required fields).
+- Implement proper error handling and status codes (400 for bad requests, 404 for not found, 500 for server errors).
+- Add authentication/authorization (JWT) if needed for protected routes.
+
+## requirements.txt
+
+This repository contains a `requirements.txt` file for any optional Python helper scripts. If you are not using Python in this project you can ignore or remove it. If present, install it with:
 
 ```
-npm test
-# or
-yarn test
+pip install -r requirements.txt
 ```
-
-Add guidance about integration tests, end-to-end tests, and how to run them (e.g., using a test database).
-
-## Linting & Formatting
-
-If you use ESLint, Prettier, or other tools, add instructions here:
-
-```
-npm run lint
-npm run format
-```
-
-## Deployment
-
-Add notes for deploying the server (Heroku, Vercel, DigitalOcean, Fly.io, Docker Compose, Kubernetes, etc.). If you provide Docker support, include an example:
-
-```
-docker build -t college-server .
-docker run -p 4000:4000 --env-file .env college-server
-```
-
-## Contributing
-
-Contributions are welcome! Please open issues and pull requests. Add a CONTRIBUTING.md file to describe your workflow, code style, and testing expectations.
-
-## License
-
-Specify a license for the project (e.g., MIT). If unsure, add a LICENSE file with the chosen license.
 
 ## Contact
 
 Maintainer: HusnainCS
-
----
-
-This README is a starting point. Update it to match the implementation details of the repository and to add any project-specific instructions, diagrams, or badges.
