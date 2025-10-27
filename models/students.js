@@ -1,13 +1,16 @@
 import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema({
-    name : String,
-    'roll no' : Number,
-    'name ' : String,
-    semester : String,
-    batch : String,
-    department : String
-},{
+    name: String,
+     roll_no: {
+        type: Number,
+        unique: false  
+    },
+    semester: String,    
+    batch: String,      
+    department: String
+}, 
+{
     collection: 'Students',
     strict: false 
 });
