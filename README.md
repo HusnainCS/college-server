@@ -71,7 +71,7 @@ Make sure your MongoDB server is running and the MONGO_URI is reachable.
 
 - Development (uses nodemon)
   ```
-  npm run dev
+  npm start
   ```
   Example package.json scripts:
   ```json
