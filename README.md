@@ -275,9 +275,7 @@ Make sure your MongoDB server is running and the MONGO_URI is reachable.
 ## Run
 
 - Development (uses nodemon)
-  ```
-  npm run dev
-  ```
+
   Example package.json scripts:
   ```json
   "scripts": {
@@ -300,105 +298,26 @@ Common endpoints (implemented in this project):
 - Students
   - GET /students
     - Description: List all students
-    - Response example: 200 OK
-      ```json
-      [
-        {
-          "_id": "64f1a2b3c4d5e6f7a8b9c0d1",
-          "name": "Alice",
-          "email": "alice@example.edu",
-          "enrolledCourses": ["CS101", "MATH201"]
-        }
-      ]
-      ```
+
   - POST /students
     - Description: Create a new student
-    - Request body example:
-      ```json
-      {
-        "name": "Alice",
-        "email": "alice@example.edu",
-        "enrolledCourses": ["CS101"]
-      }
-      ```
-    - Response example: 201 Created
-      ```json
-      {
-        "_id": "64f1a2b3c4d5e6f7a8b9c0d1",
-        "name": "Alice",
-        "email": "alice@example.edu",
-        "enrolledCourses": ["CS101"]
-      }
-      ```
+ 
 
 - Teachers
   - GET /teachers
     - Description: List all teachers
-    - Response example:
-      ```json
-      [
-        {
-          "_id": "74a1b2c3d4e5f6a7b8c9d0e1",
-          "name": "Dr. Bob",
-          "department": "Computer Science",
-          "email": "bob@example.edu"
-        }
-      ]
-      ```
+     
   - POST /teachers
     - Description: Create a new teacher
-    - Request body example:
-      ```json
-      {
-        "name": "Dr. Bob",
-        "department": "Computer Science",
-        "email": "bob@example.edu"
-      }
-      ```
-    - Response example: 201 Created
-      ```json
-      {
-        "_id": "74a1b2c3d4e5f6a7b8c9d0e1",
-        "name": "Dr. Bob",
-        "department": "Computer Science",
-        "email": "bob@example.edu"
-      }
-      ```
+
 
 - Courses
   - GET /courses
     - Description: List all courses
-    - Response example:
-      ```json
-      [
-        {
-          "_id": "CS101",
-          "title": "Introduction to Computer Science",
-          "credits": 3,
-          "instructorId": "74a1b2c3d4e5f6a7b8c9d0e1"
-        }
-      ]
-      ```
+
   - POST /courses
     - Description: Create a new course
-    - Request body example:
-      ```json
-      {
-        "_id": "CS102",
-        "title": "Data Structures",
-        "credits": 3,
-        "instructorId": "74a1b2c3d4e5f6a7b8c9d0e1"
-      }
-      ```
-    - Response example: 201 Created
-      ```json
-      {
-        "_id": "CS102",
-        "title": "Data Structures",
-        "credits": 3,
-        "instructorId": "74a1b2c3d4e5f6a7b8c9d0e1"
-      }
-      ```
+
 
 Notes:
 - Validate input in your route handlers (e.g., required fields).
