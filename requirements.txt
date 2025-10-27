@@ -1,4 +1,4 @@
-npm install express
-npm install mongoose
-npm install dotenv
-npm install nodemon
+express
+mongoose
+dotenv
+nodemon
