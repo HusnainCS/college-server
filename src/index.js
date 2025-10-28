@@ -14,19 +14,18 @@ connectDB();
 
 app.use(express.json());
 
-// This handles /api/students route
 app.use('/students', studentRoutes);
 app.use('/teachers', teacherRoutes);
 app.use('/courses',  courseRoutes);
 
-// Simple root route
+
 app.get("/", (req, res) => {
     res.json({ 
         message: "College Server is running!",
         endpoint:{
-            students : "/api/students",
-            teachers : "/api/teachers",
-            courses : "/api/courses"
+            students : "/students",
+            teachers : "/teachers",
+            courses : "/courses"
         } 
     });
 });
